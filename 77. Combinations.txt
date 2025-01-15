@@ -1,0 +1,20 @@
+class Solution {
+
+    void helper(int[] nums, List<List<Integer>> list, List<Integer> smallList, int index){
+        list.add(new ArrayList<Integer>(smallList));
+
+        for(int i=index; i<nums.length; i++){
+            if(!smallList.contains(nums[i])){
+            smallList.add(nums[i]);
+            helper(nums, list, smallList, i);
+            smallList.remove(smallList.size()-1);
+            }
+        }
+    }
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> list = new ArrayList<>();
+        List<Integer> smallList = new ArrayList<>();
+        helper(nums, list, smallList, 0);
+        return list;
+    }
+}

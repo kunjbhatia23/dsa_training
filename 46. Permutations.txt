@@ -1,0 +1,21 @@
+class Solution {
+    public void permute(int[] nums, List<List<Integer>> list, List<Integer> smallList) {
+    if(smallList.size()==nums.length){
+        list.add(new ArrayList<>(smallList));
+        return;
+    }
+    for(int i=0; i<nums.length; i++){
+        if(!smallList.contains(nums[i])){
+        smallList.add(nums[i]);
+        permute(nums,list, smallList);
+        smallList.remove(smallList.size()-1);
+        }        
+    }
+    }
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> list = new ArrayList<>();
+        List<Integer> smallList = new ArrayList<>();
+        permute(nums, list, smallList);
+        return list;
+    }
+}
